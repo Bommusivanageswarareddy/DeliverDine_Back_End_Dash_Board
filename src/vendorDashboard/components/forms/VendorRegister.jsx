@@ -7,7 +7,7 @@ const VendorRegister = ({showLoginHandler}) => {
     const [email, setEmail] = useState("");
     const [password, setpassword] = useState("");
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
