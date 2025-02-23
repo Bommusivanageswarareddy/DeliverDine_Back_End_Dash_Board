@@ -13,7 +13,7 @@ const AddProduct = () => {
     const [description, setDescription] = useState("");
 
 
-    
+
     const handleCategoryChange = (event) => {
         const value = event.target.value;
         if (category.includes(value)) {
@@ -49,6 +49,7 @@ const AddProduct = () => {
             formData.append('productName', productName);
             formData.append('price', price);
             formData.append('description', description);
+            formData.append('bestSeller', bestSeller)
             formData.append('image', image);
 
 
@@ -58,26 +59,25 @@ const AddProduct = () => {
 
             const response = await fetch(`${API_URL}/product/add-product/${firmId}`, {
                 method: 'POST',
-               body: formData
+                body: formData
             })
 
             const data = await response.json()
 
-             if(response.ok){
-                console.log(data);
-                setProductName("");
-                setPrice("");
-                setCategory([]);
-                setBestSeller(false);
-                setDescription("");
-                setImage(null);
+            if (response.ok) {
                 alert('Product added succesfully')
 
-             }
+            }
+            setProductName("")
+            setPrice("");
+            setCategory([])
+            setBestSeller(false);
+            setImage(null);
+            setDescription("")
 
         } catch (error) {
-             console.error(data.message);
-             alert('Failed to add Product')
+            console.error(data.message);
+            alert('Failed to add Product')
 
         }
     }
@@ -89,17 +89,17 @@ const AddProduct = () => {
                 <label>Product Name</label>
                 <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)} />
                 <label>Price</label>
-                <input type="text" value={price}  onChange={(e) => setPrice(e.target.value)}/>
+                <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
                 <div className="checkInp">
                     <label >Category</label>
                     <div className="inputsContainer">
                         <div className="checkboxContainer">
                             <label >Veg</label>
-                            <input type="checkbox" checked={category.includes('veg')}  value="veg" onChange={handleCategoryChange}/>
+                            <input type="checkbox" checked={category.includes('veg')} value="veg" onChange={handleCategoryChange} />
                         </div>
                         <div className="checkboxContainer">
                             <label >Non-Veg</label>
-                            <input type="checkbox" checked={category.includes('non-veg')} value="non-veg" onChange={handleCategoryChange}/>
+                            <input type="checkbox" checked={category.includes('non-veg')} value="non-veg" onChange={handleCategoryChange} />
                         </div>
                     </div>
                 </div>
@@ -109,11 +109,11 @@ const AddProduct = () => {
                     <div className="inputsContainer">
                         <div className="checkboxContainer">
                             <label >Yes</label>
-                            <input type="radio" value="true" checked = {bestSeller === true} onChange={handleBestSeller}/>
+                            <input type="radio" value="true" checked={bestSeller === true} onChange={handleBestSeller} />
                         </div>
                         <div className="checkboxContainer">
                             <label >No</label>
-                            <input type="radio" value="false" checked = {bestSeller === false} onChange={handleBestSeller} />
+                            <input type="radio" value="false" checked={bestSeller === false} onChange={handleBestSeller} />
                         </div>
                     </div>
                 </div>
