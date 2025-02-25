@@ -76,6 +76,7 @@ const AddFirm = () => {
             }else if(data.message === "vendor can have only one firm"){
                 alert("Firm  Exists only one firm can be added")
             }else{
+                console.log(error)
                 alert("Failed to add Firm")
             }
 
@@ -87,7 +88,7 @@ const AddFirm = () => {
 
         } catch (error) {
             console.error("failed to add Firm");
-            console.log(error)
+            
         }
     }
 
